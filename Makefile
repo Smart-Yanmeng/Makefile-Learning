@@ -17,9 +17,26 @@
 # factorial.o: factorial.cpp
 #	 $(CXX) -c factorial.cpp
 
+# CXX = g++
+# TARGET = main
+# OBJ = main.o printhello.o factorial.o
+#
+# CXXFLAGS = -c -Wall
+#
+# $(TARGET): $(OBJ)
+#	 $(CXX) -o $@ $^
+#
+# %.o: %.cpp
+#	 $(CXX) $(CXXFLAGS) $< -o $@
+#
+# .PHONY: clean
+# clean:
+#	 rm -f *.o $(TARGET)
+
 CXX = g++
 TARGET = main
-OBJ = main.o printhello.o factorial.o
+SRC = $(wildcard *.cpp)
+OBJ = $(patsubst %.cpp, %.o, $(SRC))
 
 CXXFLAGS = -c -Wall
 
@@ -32,4 +49,3 @@ $(TARGET): $(OBJ)
 .PHONY: clean
 clean:
 	rm -f *.o $(TARGET)
-
